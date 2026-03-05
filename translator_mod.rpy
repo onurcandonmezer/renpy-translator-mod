@@ -647,17 +647,26 @@ init 100 python:
         persistent._translator_target_lang = lang
         renpy.restart_interaction()
 
-    def _translator_paste_api_key():
+    def _translator_get_clipboard():
+        """Get clipboard text. Works on Windows, macOS, and Linux."""
+        import subprocess, sys
         try:
-            import subprocess
-            result = subprocess.run(
-                ['powershell', '-command', 'Get-Clipboard'],
-                capture_output=True, text=True, timeout=5
-            )
-            clip = result.stdout.strip()
-            if clip:
-                persistent._translator_api_key = clip
+            if sys.platform == "win32":
+                cmd = ['powershell', '-command', 'Get-Clipboard']
+            elif sys.platform == "darwin":
+                cmd = ['pbpaste']
+            else:
+                cmd = ['xclip', '-selection', 'clipboard', '-o']
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=5)
+            return result.stdout.strip()
         except Exception:
+            return None
+
+    def _translator_paste_api_key():
+        clip = _translator_get_clipboard()
+        if clip:
+            persistent._translator_api_key = clip
+        else:
             store._tl_error_message = "Paste failed."
         renpy.restart_interaction()
 
@@ -1074,30 +1083,18 @@ init 100 python:
     ##########################################################################
 
     def _translator_paste_deepl_key():
-        try:
-            import subprocess
-            result = subprocess.run(
-                ['powershell', '-command', 'Get-Clipboard'],
-                capture_output=True, text=True, timeout=5
-            )
-            clip = result.stdout.strip()
-            if clip:
-                persistent._translator_deepl_key = clip
-        except Exception:
+        clip = _translator_get_clipboard()
+        if clip:
+            persistent._translator_deepl_key = clip
+        else:
             store._tl_error_message = "Paste failed."
         renpy.restart_interaction()
 
     def _translator_paste_openai_key():
-        try:
-            import subprocess
-            result = subprocess.run(
-                ['powershell', '-command', 'Get-Clipboard'],
-                capture_output=True, text=True, timeout=5
-            )
-            clip = result.stdout.strip()
-            if clip:
-                persistent._translator_openai_key = clip
-        except Exception:
+        clip = _translator_get_clipboard()
+        if clip:
+            persistent._translator_openai_key = clip
+        else:
             store._tl_error_message = "Paste failed."
         renpy.restart_interaction()
 

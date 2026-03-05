@@ -125,7 +125,7 @@ The mod hooks into Ren'Py's dialogue system by wrapping the internal `display_sa
 
 - The mod uses the `DejaVuSans.ttf` font which is included with all Ren'Py distributions
 - Translation cache persists across game sessions via Ren'Py's persistent data
-- The "Paste" button uses PowerShell clipboard access (Windows). On other platforms, manually set the API key via the Ren'Py console
+- The "Paste" button works on Windows (PowerShell), macOS (pbpaste), and Linux (xclip)
 - The free Gemini API tier has rate limits. If you see "Too many requests", wait a moment and try again
 - Cache is automatically pruned when it exceeds 5,000 entries (removes oldest 20%)
 - TTS audio files are cached in `game/tts_cache/` for offline replay
