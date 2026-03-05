@@ -1,0 +1,7 @@
+*.rpyc
+*.rpyb
+__pycache__/
+*.pyc
+tts_cache/
+.DS_Store
+Thumbs.db
