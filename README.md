@@ -1,5 +1,9 @@
 # Ren'Py Universal Translator Mod
 
+<p align="center">
+  <img src="demo.svg" alt="Ren'Py Universal Translator Mod Demo" width="700"/>
+</p>
+
 A single-file translation mod that adds real-time dialogue translation to **any** Ren'Py visual novel. Powered by Google Gemini, DeepL, or OpenAI APIs.
 
 ## Features
