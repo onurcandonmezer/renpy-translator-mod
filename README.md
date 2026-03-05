@@ -66,8 +66,7 @@ This mod supports three translation providers:
 - Or press **T** on your keyboard
 
 ### Auto-Translation
-- Click the **"A"** button to toggle auto-translate mode (green = on)
-- Or press **Shift+T** on your keyboard
+- Press **Shift+T** on your keyboard to toggle auto-translate mode
 - When enabled, every new dialogue line is automatically translated
 
 ### Display Modes
